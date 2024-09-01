@@ -6,40 +6,70 @@
     <title>proto Type</title>
 </head>
 <body>
+    <div id="passenger-info"></div>
+    <div id="destination"></div>
     <script>
 
 
             // Proto Type is here
 
 
-        const calTac =  {
-            calcTax() {
-                console.log("The interest rate is 10%");  // ye jo object ke ander funtion hai jo
-                                                          // jo accessable hai empl and empl ke andar
-                                                          // vo itna important nahi hai jitna
+        // const calTac =  {
+        //     calcTax() {
+        //         console.log("The interest rate is 10%");  // ye jo object ke ander funtion hai jo
+        //                                                   // jo accessable hai empl and empl ke andar
+        //                                                   // vo itna important nahi hai jitna
+        //     }
+        // }
+        
+        // let empl = {
+        //     Name : "Karan Sharma",
+        //     salary : "50000",
+        //     calcTax() {
+        //         console.log("the interest rate is 23% ")  // Ye jyada important hai 
+        //     }
+        // }
+
+
+        // let empl1 = {
+        //     Name : "Rohit Sharma",
+        //     salary : "25000",
+        //     calcTax () {
+        //         console.log("The interest rate is 13%");  // ye wala bhi empl1 ke liye first hai
+        //     }
+        // }
+
+        // empl.__proto__ = calTac;
+        // empl1.__proto__ = calTac;
+
+
+        // Class 
+
+        class Passenger {
+            data () {
+                let info = " ";
+                for(let i=0; i<=5; i++) {
+                    var name = `Name ${prompt("Enter your name is here")}`;
+                    var age = `Age ${prompt("Enter your age is here")}`;
+                    var tikeNo = `Tikect Number : ${prompt("Enter Ticket Number of ")}`;
+                    info += name + "<br>" + age + "<br>" + tikeNo + "<br>";
+                }
+
+                document.getElementById('passenger-info').innerHTML = info;
+            }
+
+            dest () {
+                var from = "karnal";
+                var to = "Chandigarh";
+
+                var desti = from + "<br>" + to + "<bt>";
+                
+                document.getElementById('destination').innerHTML = desti;
+                
             }
         }
         
-        let empl = {
-            Name : "Karan Sharma",
-            salary : "50000",
-            calcTax() {
-                console.log("the interest rate is 23% ")  // Ye jyada important hai 
-            }
-        }
-
-
-        let empl1 = {
-            Name : "Rohit Sharma",
-            salary : "25000",
-            calcTax () {
-                console.log("The interest rate is 13%");  // ye wala bhi empl1 ke liye first hai
-            }
-        }
-
-        empl.__proto__ = calTac;
-        empl1.__proto__ = calTac;
-        
+        var sameer = new Passenger();
     </script>
 </body>
 </html>
