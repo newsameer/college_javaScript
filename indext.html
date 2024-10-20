@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color flipper</title>
+    <style>
+        .container{
+            width: 99vw;
+            height: 99vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            position: relative;
+        }
+        .input-con{
+            position: relative;
+            margin-bottom: 10%;
+            margin-left: 1000px;
+            align-items: center;
+        }
+        .range-con{
+            position: relative;
+            margin-top: 10%;
+            margin-right: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-con">
+            <input type="number" id="inputMin">
+            <input type="number" id="inputMax">
+        </div>
+        <div class="range-con">
+            <input type="range" id="rangeMin" min="0" max="1000" value="0">
+            <input type="range" id="rangeMax" min="0" max="1000" value="1000">
+        </div>
+    </div>
+    <script>
+        const inputMin = document.getElementById("inputMin");
+        const inputMax = document.getElementById("inputMax");
+        const rangeMin = document.getElementById("rangeMin");
+        const rangeMax = document.getElementById("rangeMax");
+
+        const inputMinLimit = 0;
+        const inputMaxLimet = 1000;
+
+        function updateMinRange() {
+            if (parseInt(inputMin.value)>= parseInt(inputMax.value)) {
+                inputMin.value = inputMax.value -1;
+            }
+            rangeMin.value = inputMin.value;
+        }
+
+        function updateMaxRange() {
+            if (parseInt(inputMax.value) <= parseInt(inputMin.value)) {
+                inputMax.value = parseInt(inputMin) + 1;
+            }
+            rangeMax.value = inputMax.value;
+        }
+
+        function updateinputMin() {
+            if (parseInt(rangeMin.value) >= parseInt(inputMax.value)) {
+                rangeMin.value = inputMax.value -1;
+            }
+            inputMin.value = rangeMin.value;
+        }
+
+        function updateinputMax() {
+            if (parseInt(rangeMax.value) <= parseInt(inputMin.value)){
+                rangeMax.value = parseInt(inputMin.value) + 1;
+            }
+            inputMax.value = rangeMax.value;
+        }
+
+        inputMin.addEventListener("input", updateinputMin);
+        inputMax.addEventListener("input", updateinputMax);
+
+        rangeMin.addEventListener("input", updateMinRange);
+        rangeMax.addEventListener("input", updateMaxRange);
+    </script>
+</body>
+</html>

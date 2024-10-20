@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Range Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 300px;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+        .range-inputs {
+            display: flex;
+            justify-content: space-between;
+        }
+        .range-inputs input {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Price Range Slider</h2>
+        <div class="range-inputs">
+            <input type="number" id="min-price" value="0" min="0" max="1000" step="1">
+            <input type="number" id="max-price" value="1000" min="0" max="1000" step="1">
+        </div>
+        <input type="range" id="range-min" class="slider" min="0" max="1000" value="0" step="1">
+        <input type="range" id="range-max" class="slider" min="0" max="1000" value="1000" step="1">
+    </div>
+
+    <script>
+        const minPriceInput = document.getElementById('min-price');
+        const maxPriceInput = document.getElementById('max-price');
+        const rangeMin = document.getElementById('range-min');
+        const rangeMax = document.getElementById('range-max');
+
+        const minPriceLimit = 0;
+        const maxPriceLimit = 1000;
+
+        // Sync inputs with range sliders
+        function updateMinRange() {
+            if (parseInt(minPriceInput.value) >= parseInt(maxPriceInput.value)) {
+                minPriceInput.value = maxPriceInput.value - 1;
+            }
+            rangeMin.value = minPriceInput.value;
+        }
+
+        function updateMaxRange() {
+            if (parseInt(maxPriceInput.value) <= parseInt(minPriceInput.value)) {
+                maxPriceInput.value = parseInt(minPriceInput.value) + 1;
+            }
+            rangeMax.value = maxPriceInput.value;
+        }
+
+        function updateMinPrice() {
+            if (parseInt(rangeMin.value) >= parseInt(maxPriceInput.value)) {
+                rangeMin.value = maxPriceInput.value - 1;
+            }
+            minPriceInput.value = rangeMin.value;
+        }
+
+        function updateMaxPrice() {
+            if (parseInt(rangeMax.value) <= parseInt(minPriceInput.value)) {
+                rangeMax.value = parseInt(minPriceInput.value) + 1;
+            }
+            maxPriceInput.value = rangeMax.value;
+        }
+
+        // Event listeners for manual input changes
+        minPriceInput.addEventListener('input', updateMinRange);
+        maxPriceInput.addEventListener('input', updateMaxRange);
+
+        // Event listeners for slider changes
+        rangeMin.addEventListener('input', updateMinPrice);
+        rangeMax.addEventListener('input', updateMaxPrice);
+    </script>
+
+</body>
+</html>
